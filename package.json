@@ -1,0 +1,29 @@
+{
+  "name": "security-alert-socket",
+  "version": "1.0.0",
+  "description": "Socket for Security Alert project with Arduino and NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "dev": "PORT=8080 nodemon .",
+    "start": "PORT=80 node ."
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "serve-static": "^1.13.2",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/usuarioJapa/security-alert-socket.git"
+  },
+  "author": "userJapa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/usuarioJapa/security-alert-socket/issues"
+  },
+  "homepage": "https://github.com/usuarioJapa/security-alert-socket#readme"
+}

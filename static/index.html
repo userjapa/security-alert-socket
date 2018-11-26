@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Security Alert interface using SocketIO.">
+    <meta name="keywords" content="Arduino,Security,NodeJS,JavaScript,Socket.IO">
+    <meta name="author" content="userJapa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Alert - Socket</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <div class="main">
+      <div class="main__header">
+        <h1>Security Alert</h1>
+      </div>
+      <div class="main__content">
+        <div class="main__content__button">
+          <button id="check" disabled>Check Area</button>
+        </div>
+        <div class="main__content__result">
+          <span>Result:</span>
+          <p id="result"></p>
+        </div>
+      </div>
+    </div>
+    <script src="/socket.io.js"></script>
+    <script src="/assets/js/index.js"></script>
+  </body>
+</html>
