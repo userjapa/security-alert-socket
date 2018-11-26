@@ -1,4 +1,4 @@
-const socket = io.connect('http://localhost:8080/arduino')
+const socket = io.connect('/arduino')
 let checkBtn = document.getElementById('check'),
     resultTxt = document.getElementById('result')
 
