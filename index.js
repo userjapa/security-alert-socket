@@ -15,18 +15,19 @@ const socket = require('socket.io')(server)
 const io = socket.of('/arduino')
 
 io.on('connection', socket => {
+  console.log(`Socket ${socket.id} connected!`)
 
   socket.on('disconnect', () => {
     console.log(`Socket ID:${socket.id} Disconnected...`)
   })
 
   socket.on('led:on', () => {
-    socket.broadcast.emit('led:on')
+    io.emit('led:on')
     console.log('Broadicasting led:on')
   })
 
   socket.on('led:off', () => {
-    socket.broadcast.emit('led:off')
+    io.emit('led:off')
     console.log('Broadicasting led:off')
   })
   // socket.on('request_verification', () => {

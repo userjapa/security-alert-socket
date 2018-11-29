@@ -1,5 +1,5 @@
 //const socket = io.connect('/arduino')
-const socket = io.connect('192.168.113.128')
+const socket = io.connect(`${window.location.host}/arduino`)
 let checkBtn = document.getElementById('check'),
     resultTxt = document.getElementById('result')
 
@@ -31,7 +31,6 @@ socket.on('led:off', () => {
 checkBtn.onclick = () => {
   if (!ledState) socket.emit('led:on')
   else socket.emit('led:off')
-
   // resultTxt.textContent = ''
   // socket.emit('request_verification')
 }
