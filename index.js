@@ -14,44 +14,28 @@ const server = http.Server(app)
 const socket = require('socket.io')(server)
 const io = socket.of('/arduino')
 
-let connection = {
-  arduino: false,
-  client: false
-}
-
-let id = {}
-
 io.on('connection', socket => {
-  // socket.emit('news', { hello: 'world' })
-  socket.on('client_connected', () => {
-    connection['client'] = true
-    id[socket.id] = 'client'
-    socket.emit('arduino_connection', connection['arduino'])
-    socket.emit('client_connection', connection['client'])
-    console.log('Client connected');
-  })
-
-  socket.on('arduino_connected', () => {
-    connection['arduino'] = true
-    id[socket.id] = 'arduino'
-    socket.emit('client_connection', connection['client'])
-    socket.emit('arduino_connection', connection['arduino'])
-  })
 
   socket.on('disconnect', () => {
-    const type = id[socket.id]
-    connection[type] = false
-    delete id[socket.id]
-    socket.emit(`${type}_connection`, connection[type])
+    console.log(`Socket ID:${socket.id} Disconnected...`)
   })
 
-  socket.on('request_verification', () => {
-    socket.emit('verification_requested')
+  socket.on('led:on', () => {
+    socket.broadcast.emit('led:on')
+    console.log('Broadicasting led:on')
   })
 
-  socket.on('verification_made', data => {
-    socket.emit('verification_result', data)
+  socket.on('led:off', () => {
+    socket.broadcast.emit('led:off')
+    console.log('Broadicasting led:off')
   })
+  // socket.on('request_verification', () => {
+  //   socket.emit('verification_requested')
+  // })
+  //
+  // socket.on('verification_made', data => {
+  //   socket.emit('verification_result', data)
+  // })
 
 })
 
