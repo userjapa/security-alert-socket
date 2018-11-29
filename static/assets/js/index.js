@@ -1,5 +1,5 @@
 //const socket = io.connect('/arduino')
-const socket = io.connect(`${window.location.host}/arduino`)
+const socket = io.connect(`${window.location.origin}/arduino`)
 let checkBtn = document.getElementById('check'),
     resultTxt = document.getElementById('result')
 
