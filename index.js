@@ -23,19 +23,17 @@ io.on('connection', socket => {
 
   socket.on('disconnect', () => {
     console.log(`Socket ID:${socket.id} Disconnected...`)
-    socket.broadcast.emit('set-outputs', outputs)
+    io.emit('set-outputs', outputs)
   })
 
   socket.on('led:on', () => {
     io.emit('led:on')
     outputs['led13'] = true
-    socket.broadcast.emit('set-outputs', outputs)
   })
 
   socket.on('led:off', () => {
     io.emit('led:off')
     outputs['led13'] = false
-    socket.broadcast.emit('set-outputs', outputs)
   })
   // socket.on('request_verification', () => {
   //   socket.emit('verification_requested')
