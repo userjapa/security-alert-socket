@@ -5,10 +5,12 @@ let checkBtn = document.getElementById('check'),
 
 let arduino_connected = false
 
-let ledState = false
+let outputs = {
+  led13: false
+}
 
 const changeLedState = isOn => {
-  ledState = isOn
+  outputs['led13'] = isOn
   if (isOn) checkBtn.textContent = 'Turn led:off'
   else checkBtn.textContent = 'Turn led:on'
 }
@@ -16,6 +18,10 @@ const changeLedState = isOn => {
 // SOCKET START
 socket.on('connect', () => {
   console.log(`Client ${socket.id} connected!`)
+})
+
+socket.on('set-outputs', data => {
+  changeLedState(data['led13'])
 })
 
 socket.on('led:on', () => {
@@ -29,7 +35,7 @@ socket.on('led:off', () => {
 
 // DOM START
 checkBtn.onclick = () => {
-  if (!ledState) socket.emit('led:on')
+  if (!outputs['led13']) socket.emit('led:on')
   else socket.emit('led:off')
   // resultTxt.textContent = ''
   // socket.emit('request_verification')
