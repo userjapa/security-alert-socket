@@ -29,11 +29,13 @@ io.on('connection', socket => {
   socket.on('led:on', () => {
     io.emit('led:on')
     outputs['led13'] = true
+    io.emit('set-outputs', outputs)
   })
 
   socket.on('led:off', () => {
     io.emit('led:off')
     outputs['led13'] = false
+    io.emit('set-outputs', outputs)
   })
   // socket.on('request_verification', () => {
   //   socket.emit('verification_requested')
